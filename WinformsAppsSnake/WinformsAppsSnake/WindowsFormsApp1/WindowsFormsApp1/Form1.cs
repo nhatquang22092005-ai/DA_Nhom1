@@ -153,7 +153,7 @@ namespace WindowsFormsApp1
     {
         if (bonus.isVisible && snake.SnakeRec[i].IntersectsWith(bonus.bonusR))
         {
-            snake.growSnake();
+            
             score += 100;
             scoreLabel.Text = "Score: " + score;
             bonus.isVisible = false;
@@ -224,6 +224,7 @@ namespace WindowsFormsApp1
         }
     }
 }
+
 
 
 
