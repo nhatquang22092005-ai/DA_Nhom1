@@ -13,6 +13,8 @@ namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
+        private Label scoreLabel = new Label();
+        private Label highScoreLabel = new Label();
         Random ranFood = new Random();
          BonusFood bonus;
          int soLanAn = 0;
@@ -25,7 +27,8 @@ namespace WindowsFormsApp1
 
         Snake snake = new Snake();
         Boolean left = false, right = false, up = false, down = false, esc=false;
-
+        private int score = 0;
+        public static int highScore = 0;
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyData == Keys.Up && down == false)
@@ -96,6 +99,12 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
             food = new Food(ranFood);
+            scoreLabel.Text = "Score: 0";
+            scoreLabel.Location = new Point(10, 20);
+            scoreLabel.AutoSize = true;
+            scoreLabel.Font = new Font("Arial", 12, FontStyle.Bold);
+            scoreLabel.ForeColor = Color.Black; 
+            this.Controls.Add(scoreLabel);
         }
 
 
@@ -112,7 +121,8 @@ namespace WindowsFormsApp1
                 {
                     snake.growSnake();
                     food.viTriFood(ranFood);
-
+                    score += 10; 
+                    scoreLabel.Text = "Score: " + score;
                     if (timer1.Interval > 70)
                         timer1.Interval -= 50;
                     else
@@ -130,6 +140,10 @@ namespace WindowsFormsApp1
               
                 if (snake.SnakeRec[0].IntersectsWith(snake.SnakeRec[i]))
                 {
+                 if (score > highScore)
+                    {
+                    highScore = score;
+                    }
                     timer1.Enabled = false;
                     DialogResult kq = MessageBox.Show("Tự đâm rồi kìa ní!!", "Muốn chơi lại khum??", MessageBoxButtons.OK, MessageBoxIcon.Question);
                     if (kq == DialogResult.OK)
@@ -143,6 +157,10 @@ namespace WindowsFormsApp1
             }
             if (snake.SnakeRec[0].Y < 0 || snake.SnakeRec[0].Y > this.ClientSize.Height)
             {
+             if (score > highScore)
+                {
+                highScore = score;
+                }
                 timer1.Enabled = false;
                 DialogResult kq = MessageBox.Show("Đâm dô tường rồi kìa", "Muốn chơi lại khum??", MessageBoxButtons.OK, MessageBoxIcon.Question);
                 if (kq == DialogResult.OK)
@@ -153,6 +171,10 @@ namespace WindowsFormsApp1
             }
             if (snake.SnakeRec[0].X < 0 || snake.SnakeRec[0].X > this.ClientSize.Width)
             {
+             if (score > highScore)
+                {
+                highScore = score;
+                }
                 timer1.Enabled = false;
                 DialogResult kq = MessageBox.Show("Đâm dô tường rồi kìa", "Muốn chơi lại khum??", MessageBoxButtons.OK, MessageBoxIcon.Question);
                 if (kq == DialogResult.OK)
