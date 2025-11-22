@@ -105,6 +105,8 @@ namespace WindowsFormsApp1
             scoreLabel.Font = new Font("Arial", 12, FontStyle.Bold);
             scoreLabel.ForeColor = Color.Black; 
             this.Controls.Add(scoreLabel);
+            bonus = new BonusFood(ranFood);
+
         }
 
 
@@ -222,5 +224,6 @@ namespace WindowsFormsApp1
         }
     }
 }
+
 
 
