@@ -12,9 +12,15 @@ namespace WindowsFormsApp1
 {
     public partial class MainMenu : Form
     {
+        private Label lblHighScore = new Label();
         public MainMenu()
         {
             InitializeComponent();
+            lblHighScore.Location = new Point(20, 20); 
+            lblHighScore.AutoSize = true;
+            lblHighScore.Font = new Font("Arial", 16, FontStyle.Bold);
+            lblHighScore.Text = "Điểm Cao Nhất: " + Form1.highScore;
+            this.Controls.Add(lblHighScore);
         }
 
         private void btnPlay_Click(object sender, EventArgs e)
@@ -23,6 +29,7 @@ namespace WindowsFormsApp1
             this.Hide();
             gameshow.ShowDialog();
             this.Show();
+            lblHighScore.Text = "Điểm Cao Nhất: " + Form1.highScore;
         }
 
         private void btnThoat_Click(object sender, EventArgs e)
@@ -35,3 +42,4 @@ namespace WindowsFormsApp1
         }
     }
 }
+
