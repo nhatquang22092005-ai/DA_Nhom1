@@ -14,6 +14,10 @@ namespace WindowsFormsApp1
     public partial class Form1 : Form
     {
         Random ranFood = new Random();
+         BonusFood bonus;
+         int soLanAn = 0;
+         int bonusCountdown = 0;
+         bool bonusReady = false;
 
         Food food;
 
@@ -162,3 +166,4 @@ namespace WindowsFormsApp1
         }
     }
 }
+
