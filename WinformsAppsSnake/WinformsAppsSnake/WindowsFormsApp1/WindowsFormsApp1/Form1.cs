@@ -110,28 +110,62 @@ namespace WindowsFormsApp1
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            paper = e.Graphics;
-            food.veFood(paper);
-            snake.veSnake(paper);
+    paper = e.Graphics;
+    food.veFood(paper);
+    snake.veSnake(paper);
 
-            for (int i = 0; i < snake.SnakeRec.Length; i++)
+    for (int i = 0; i < snake.SnakeRec.Length; i++)
 
-            {
-                if (snake.SnakeRec[i].IntersectsWith(food.foodR))
-                {
-                    snake.growSnake();
-                    food.viTriFood(ranFood);
-                    score += 10; 
-                    scoreLabel.Text = "Score: " + score;
-                    if (timer1.Interval > 70)
-                        timer1.Interval -= 50;
-                    else
-                        timer1.Interval = 70;
-                }
-            }
-            
-            collision();
+    {
+        if (snake.SnakeRec[i].IntersectsWith(food.foodR))
+        {
+            snake.growSnake();
+            food.viTriFood(ranFood);
+            score += 10;
+            scoreLabel.Text = "Score: " + score;
+            if (timer1.Interval > 70)
+                timer1.Interval -= 50;
+            else
+                timer1.Interval = 70;
+
+            soLanAn++;
         }
+    }
+    if (soLanAn >= 5 && soLanAn % 5 == 0 && !bonus.isVisible && !bonusReady)
+    {
+        bonus.taoMoi(ranFood);  
+        bonus.isVisible = true;
+        bonusCountdown = 70;    
+        bonusReady = true;      
+    }
+
+    if (bonus.isVisible)
+    {
+        bonus.veFood(paper);
+        bonusCountdown--;
+        if (bonusCountdown <= 0)
+            bonus.isVisible = false;
+    }
+
+    for (int i = 0; i < snake.SnakeRec.Length; i++)
+    {
+        if (bonus.isVisible && snake.SnakeRec[i].IntersectsWith(bonus.bonusR))
+        {
+            snake.growSnake();
+            score += 100;
+            scoreLabel.Text = "Score: " + score;
+            bonus.isVisible = false;
+        }
+    }
+
+    if (!bonus.isVisible && bonusReady)
+    { 
+        bonusReady = false;
+        soLanAn = 0;
+    }
+    collision();
+}
+
         public void collision()
         {
             
@@ -188,4 +222,5 @@ namespace WindowsFormsApp1
         }
     }
 }
+
 
