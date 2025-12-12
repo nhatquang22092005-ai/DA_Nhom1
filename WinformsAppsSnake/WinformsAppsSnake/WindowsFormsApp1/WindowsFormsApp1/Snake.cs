@@ -9,6 +9,7 @@ namespace WindowsFormsApp1
 {
     internal class Snake
     {
+        private SolidBrush snakeBrush;
         private Rectangle[] snakeRec;
         
         public Rectangle[] SnakeRec // tao o ngoai de lam dai con ran
@@ -20,10 +21,10 @@ namespace WindowsFormsApp1
         private SolidBrush brush;
         private int x, y, rong, dai;
 
-        public Snake()
+        public Snake(Color chosenColor)
         {
             snakeRec = new Rectangle[5];
-            brush = new SolidBrush(Color.Green);
+            brush = new SolidBrush(chosenColor);
 
             x = 50;
             y = 0;
@@ -96,3 +97,4 @@ namespace WindowsFormsApp1
         }
     }
 }
+
