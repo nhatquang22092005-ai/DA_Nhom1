@@ -29,7 +29,7 @@ namespace WindowsFormsApp1
 
 
 
-        Snake snake = new Snake();
+        Snake snake; 
         Boolean left = false, right = false, up = false, down = false, esc = false;
         private int score = 0;
         public static int highScore = 0;
@@ -273,3 +273,4 @@ namespace WindowsFormsApp1
 
     }
 }
+
