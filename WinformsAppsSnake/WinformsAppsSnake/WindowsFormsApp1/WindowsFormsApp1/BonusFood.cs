@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -9,8 +9,8 @@ namespace WindowsFormsApp1
 {
     class BonusFood
     {
-        public int x, y, dai, rong;           // công khai để form truy cập
-        public bool isVisible;     // flag bonus
+        public int x, y, dai, rong;
+        public bool isVisible;
         private SolidBrush brush;
 
         public Rectangle bonusR;
@@ -20,16 +20,41 @@ namespace WindowsFormsApp1
             dai = 20;
             rong = 20;
             brush = new SolidBrush(Color.Gold);
-            isVisible = false;  
-            taoMoi(ran);
+            isVisible = false;
+          
         }
 
-        public void taoMoi(Random ran)
-        {
-            x = ran.Next(0, 29) * 10;
-            y = ran.Next(0, 29) * 10;
+       
 
-            bonusR = new Rectangle(x, y, dai, rong);
+        public void taoMoi(Random ran, List<Rectangle> walls, Rectangle teleIn, Rectangle teleOut, Rectangle[] snake)
+        {
+            while (true)
+            {
+                x = ran.Next(0, 29) * 20;
+                y = ran.Next(0, 29) * 20;
+
+                Rectangle newBonus = new Rectangle(x, y, dai, rong);
+
+                
+                if (walls.Any(w => w.IntersectsWith(newBonus)))
+                    continue;
+
+               
+                if (newBonus.IntersectsWith(teleIn) || newBonus.IntersectsWith(teleOut))
+                    continue;
+
+                
+                if (snake.Any(s => s.IntersectsWith(newBonus)))
+                    continue;
+
+                bonusR = newBonus;
+
+                
+                x = bonusR.X;
+                y = bonusR.Y;
+
+                break;
+            }
         }
 
         public void veFood(Graphics paper)
