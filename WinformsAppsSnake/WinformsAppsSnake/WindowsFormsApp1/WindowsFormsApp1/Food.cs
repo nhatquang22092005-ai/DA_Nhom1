@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,21 +12,43 @@ namespace WindowsFormsApp1
         private int x, y, dai, rong;
         private SolidBrush brush;
         public Rectangle foodR;
-        public Food(Random ranFood)
+        public Food()
         {
-            x = ranFood.Next(0, 29) * 10;
-            y = ranFood.Next(0, 29) * 10;
-
+          
             brush = new SolidBrush(Color.Red);
 
-            dai = 10;rong = 10;
+            dai = 10; rong = 10;
 
-            foodR = new Rectangle(x,y,dai,rong);
+            foodR = Rectangle.Empty;
+            
         }
-        public void viTriFood(Random ranFood)
+     
+        public void viTriFood(Random ran, List<Rectangle> walls, Rectangle teleIn, Rectangle teleOut, Rectangle[] snake)
         {
-            x = ranFood.Next(0, 29) * 10;
-           y = ranFood.Next(0, 29) * 10;
+            while (true)
+            {
+                x = ran.Next(0, 29) * 20;
+                y = ran.Next(0, 29) * 20;
+
+                Rectangle newFood = new Rectangle(x, y, dai, rong);
+
+                
+                if (walls.Any(w => w.IntersectsWith(newFood)))
+                    continue;
+
+                
+                if (newFood.IntersectsWith(teleIn) || newFood.IntersectsWith(teleOut))
+                    continue;
+
+               
+                if (snake.Any(s => s.IntersectsWith(newFood)))
+                    continue;
+
+                x=newFood.X;
+                y=newFood.Y;
+                foodR = newFood;
+                break;
+            }
         }
         public void veFood(Graphics paper)
         {
