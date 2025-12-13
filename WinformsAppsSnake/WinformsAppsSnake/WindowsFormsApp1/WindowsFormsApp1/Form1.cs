@@ -196,7 +196,7 @@ namespace WindowsFormsApp1
                 }
 
                 level++;
-                if (level > 4) level = 1;
+                if (level > 5) level = 1;
 
                 map.LoadLevel(level);
                 
