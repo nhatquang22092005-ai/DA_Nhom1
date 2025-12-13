@@ -15,8 +15,7 @@ namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
-        private Label scoreLabel = new Label();
-        private Label highScoreLabel = new Label();
+  
         Random ranFood = new Random();
         BonusFood bonus;
         int soLanAn = 0;
@@ -113,13 +112,9 @@ namespace WindowsFormsApp1
         public Form1()
         {
             InitializeComponent();
+            snake = new Snake(snakeColor);
             food = new Food();
-            scoreLabel.Text = "Diem: 0";
-            scoreLabel.Location = new Point(5, 5);
-            scoreLabel.AutoSize = true;
-            scoreLabel.Font = new Font("Arial", 12, FontStyle.Bold);
-            scoreLabel.ForeColor = Color.White;
-            this.Controls.Add(scoreLabel);
+            
             bonus = new BonusFood(ranFood);
             map.LoadLevel(level);
             food.viTriFood(ranFood, map.Walls, map.TeleIn, map.TeleOut, snake.SnakeRec);
@@ -142,7 +137,7 @@ namespace WindowsFormsApp1
                     snake.growSnake();
                     food.viTriFood(ranFood, map.Walls, map.TeleIn, map.TeleOut, snake.SnakeRec);
                     score += 10;
-                    scoreLabel.Text = "Diem: " + score;
+                    lblScore.Text = "Điểm: " + score;
                     if (timer1.Interval > 70)
                         timer1.Interval -= 50;
                     else
@@ -173,7 +168,7 @@ namespace WindowsFormsApp1
                 {
                     snake.growSnake();
                     score += 100;
-                    scoreLabel.Text = "Diem: " + score;
+                    lblScore.Text = "Điểm: " + score;
                     bonus.isVisible = false;
                 }
             }
@@ -273,4 +268,5 @@ namespace WindowsFormsApp1
 
     }
 }
+
 
