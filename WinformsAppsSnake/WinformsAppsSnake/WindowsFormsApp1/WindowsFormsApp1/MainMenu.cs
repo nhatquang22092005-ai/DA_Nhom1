@@ -40,7 +40,25 @@ namespace WindowsFormsApp1
                 this.Close();
             }
         }
+         private void btnGreen_Click(object sender, EventArgs e)
+ {
+     currentColor = Color.Green;
+     MessageBox.Show("Bạn đã chọn màu xanh.","Đổi màu",MessageBoxButtons.OK,MessageBoxIcon.Information);
+ }
+
+ private void btnRed_Click(object sender, EventArgs e)
+ {
+     currentColor = Color.Red;
+     MessageBox.Show("Bạn đã chọn màu đỏ.", "Đổi màu", MessageBoxButtons.OK, MessageBoxIcon.Information);
+ }
+
+ private void btnPurple_Click(object sender, EventArgs e)
+ {
+     currentColor = Color.Purple;
+     MessageBox.Show("Bạn đã chọn màu tím.", "Đổi màu", MessageBoxButtons.OK, MessageBoxIcon.Information);
+ }
     }
 }
+
 
 
