@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -27,6 +27,8 @@ namespace WindowsFormsApp1
                 LoadLevel2();
             else if (level == 3)
                 LoadLevel3();
+            else if (level == 4)
+                LoadLevel4();
             else
                 LoadLevel1();
 
@@ -37,8 +39,14 @@ namespace WindowsFormsApp1
 
         }
 
-     
         private void LoadLevel1()
+        {
+
+            TeleIn = new Rectangle(60, 60, 20, 20);
+            TeleOut = new Rectangle(720, 520, 20, 20);
+
+        }
+        private void LoadLevel2()
         {
             Walls.Clear();
 
@@ -46,29 +54,29 @@ namespace WindowsFormsApp1
             Walls.Add(new Rectangle(100, 100, 450, wallSize));
             Walls.Add(new Rectangle(100, 400, 300, wallSize));
 
-            
-            TeleIn = new Rectangle(20, 350, 20, 20);
-            TeleOut = new Rectangle(350, 350, 20, 20);
+
+            TeleIn = new Rectangle(40, 360, 20, 20);
+            TeleOut = new Rectangle(360, 360, 20, 20);
 
         }
 
 
-        private void LoadLevel2()
+        private void LoadLevel3()
         {
             Walls.Add(new Rectangle(70, 50, wallSize, 300));
             Walls.Add(new Rectangle(300, 50, wallSize, 300));
             Walls.Add(new Rectangle(70, 330, 230, wallSize));
 
-            TeleIn = new Rectangle(30, 100, 20, 20);
-            TeleOut = new Rectangle(350, 50, 20, 20);
+            TeleIn = new Rectangle(40, 360, 20, 20);
+            TeleOut = new Rectangle(260, 120, 20, 20);
 
-            
+
             Walls.RemoveAll(w => w.IntersectsWith(TeleIn) || w.IntersectsWith(TeleOut));
         }
 
 
 
-        private void LoadLevel3()
+        private void LoadLevel4()
         {
 
 
@@ -77,13 +85,13 @@ namespace WindowsFormsApp1
             Walls.Add(new Rectangle(500, 150, wallSize, 250));  
             Walls.Add(new Rectangle(250, 350, 300, wallSize));  
             Walls.Add(new Rectangle(300, 250, 150, wallSize));  
-            Walls.Add(new Rectangle(400, 100, wallSize, 150));  
+            Walls.Add(new Rectangle(400, 100, wallSize, 150));
 
-         
-            TeleIn = new Rectangle(20, 350, 20, 20);
-            TeleOut = new Rectangle(350, 350, 20, 20);
 
-            
+            TeleIn = new Rectangle(60, 60, 20, 20);
+            TeleOut = new Rectangle(80, 500, 20, 20);
+
+
             Walls.RemoveAll(w => w.IntersectsWith(TeleIn) || w.IntersectsWith(TeleOut));
         }
 
@@ -92,7 +100,7 @@ namespace WindowsFormsApp1
             
             foreach (var w in Walls)
             {
-                g.FillRectangle(Brushes.Brown, w);
+                g.FillRectangle(Brushes.SaddleBrown, w);
             }
 
             
@@ -101,18 +109,22 @@ namespace WindowsFormsApp1
                 return;
             if (level == 1)
             {
-                g.FillRectangle(Brushes.Blue, TeleIn);
+                g.FillRectangle(Brushes.Green, TeleIn);
 
             }
             else if (level ==2)
             {
-                g.FillRectangle(Brushes.Purple, TeleIn);
+                g.FillRectangle(Brushes.Green, TeleIn);
             }
             else if (level == 3)
             {
-                g.FillRectangle(Brushes.Orange, TeleIn);
-            }     
-            
+                g.FillRectangle(Brushes.Green, TeleIn);
+            }
+            else if (level == 4)
+            {
+                g.FillRectangle(Brushes.Green, TeleIn);
+            }
+
         }
         private void AddBoundaryWalls()
         {
