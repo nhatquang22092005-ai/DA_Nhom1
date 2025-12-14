@@ -29,7 +29,7 @@ namespace WindowsFormsApp1
 
 
 
-        Snake snake; 
+        Snake snake;
         Boolean left = false, right = false, up = false, down = false, esc = false;
         private int score = 0;
         public static int highScore = 0;
@@ -110,29 +110,33 @@ namespace WindowsFormsApp1
             this.Invalidate();
         }
 
-        public Form1()
+        public Form1(Color snakeColor)
         {
             InitializeComponent();
             food = new Food();
-            scoreLabel.Text = "Diem: 0";
-            scoreLabel.Location = new Point(5, 5);
-            scoreLabel.AutoSize = true;
-            scoreLabel.Font = new Font("Arial", 12, FontStyle.Bold);
-            scoreLabel.ForeColor = Color.White;
-            this.Controls.Add(scoreLabel);
+            snake = new Snake(snakeColor);
             bonus = new BonusFood(ranFood);
             map.LoadLevel(level);
             food.viTriFood(ranFood, map.Walls, map.TeleIn, map.TeleOut, snake.SnakeRec);
+            this.FormClosed += Form1_FormClosed;
             this.Invalidate();
-        }
 
+        }
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (score > highScore)
+            {
+                highScore = score;
+            }
+        }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             paper = e.Graphics;
-            map.Draw(paper,level, score >= level * 100);
             food.veFood(paper);
             snake.veSnake(paper);
+            map.Draw(paper, level, score >= level * 100);
+
 
             for (int i = 0; i < snake.SnakeRec.Length; i++)
 
@@ -142,7 +146,7 @@ namespace WindowsFormsApp1
                     snake.growSnake();
                     food.viTriFood(ranFood, map.Walls, map.TeleIn, map.TeleOut, snake.SnakeRec);
                     score += 10;
-                    scoreLabel.Text = "Diem: " + score;
+                    lblScore.Text = "Điểm " + score;
                     if (timer1.Interval > 70)
                         timer1.Interval -= 50;
                     else
@@ -173,7 +177,7 @@ namespace WindowsFormsApp1
                 {
                     snake.growSnake();
                     score += 100;
-                    scoreLabel.Text = "Diem: " + score;
+                    lblScore.Text = "Điểm " + score;
                     bonus.isVisible = false;
                 }
             }
@@ -196,7 +200,7 @@ namespace WindowsFormsApp1
                 }
 
                 level++;
-                if (level > 5) level = 1;
+                if (level > 4) level = 1;
 
                 map.LoadLevel(level);
                 
@@ -273,4 +277,3 @@ namespace WindowsFormsApp1
 
     }
 }
-
