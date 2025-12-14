@@ -41,7 +41,7 @@ namespace WindowsFormsApp1
 
         private void LoadLevel1()
         {
-
+            
             TeleIn = new Rectangle(60, 60, 20, 20);
             TeleOut = new Rectangle(720, 520, 20, 20);
 
@@ -50,7 +50,7 @@ namespace WindowsFormsApp1
         {
             Walls.Clear();
 
-            
+         
             Walls.Add(new Rectangle(100, 100, 450, wallSize));
             Walls.Add(new Rectangle(100, 400, 300, wallSize));
 
@@ -63,6 +63,7 @@ namespace WindowsFormsApp1
 
         private void LoadLevel3()
         {
+         
             Walls.Add(new Rectangle(70, 50, wallSize, 300));
             Walls.Add(new Rectangle(300, 50, wallSize, 300));
             Walls.Add(new Rectangle(70, 330, 230, wallSize));
@@ -78,8 +79,7 @@ namespace WindowsFormsApp1
 
         private void LoadLevel4()
         {
-
-
+         
             Walls.Add(new Rectangle(150, 100, 200, wallSize));  
             Walls.Add(new Rectangle(100, 200, wallSize, 200));  
             Walls.Add(new Rectangle(500, 150, wallSize, 250));  
@@ -101,6 +101,7 @@ namespace WindowsFormsApp1
             foreach (var w in Walls)
             {
                 g.FillRectangle(Brushes.SaddleBrown, w);
+
             }
 
             
