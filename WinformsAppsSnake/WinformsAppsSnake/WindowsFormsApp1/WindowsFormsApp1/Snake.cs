@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,10 +9,9 @@ namespace WindowsFormsApp1
 {
     internal class Snake
     {
-        private SolidBrush snakeBrush;
         private Rectangle[] snakeRec;
         
-        public Rectangle[] SnakeRec // tao o ngoai de lam dai con ran
+        public Rectangle[] SnakeRec 
         {
             get { return snakeRec; }
         }
@@ -26,8 +25,8 @@ namespace WindowsFormsApp1
             snakeRec = new Rectangle[5];
             brush = new SolidBrush(chosenColor);
 
-            x = 50;
-            y = 0;
+            x = 100;
+            y = 50;
             dai = 10;
             rong = 10;
             for (int i = 0; i < snakeRec.Length; i++)
@@ -40,8 +39,8 @@ namespace WindowsFormsApp1
         {
             paper.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
 
-      
-            using (SolidBrush headBrush = new SolidBrush(Color.Green))
+
+            using (SolidBrush headBrush = new SolidBrush(brush.Color))
             {
              
                 paper.FillRectangle(headBrush, snakeRec[0]);
@@ -97,4 +96,3 @@ namespace WindowsFormsApp1
         }
     }
 }
-
