@@ -12,6 +12,7 @@ namespace WindowsFormsApp1
 {
     public partial class MainMenu : Form
     {
+       private Color currentColor = Color.Green;
 
         public MainMenu()
         {
@@ -55,6 +56,7 @@ namespace WindowsFormsApp1
  }
     }
 }
+
 
 
 
